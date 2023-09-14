@@ -9,6 +9,7 @@ const homeRoutes = require("./routes/home.js");
 const authRoutes = require("./routes/auth.js");
 const adminRoutes = require("./routes/admin.js");
 const donorRoutes = require("./routes/donor.js");
+const agentRoutes = require("./routes/agent.js");
 require("dotenv").config();
 require("./config/dbConnection.js")();
 require("./config/passport.js")(passport);
@@ -45,6 +46,7 @@ app.use(homeRoutes);
 app.use(authRoutes);
 app.use(adminRoutes);
 app.use(donorRoutes);
+app.use(agentRoutes);
 app.use((req,res) => {
 	res.status(404).render("404page", { title: "Page not found" });
 });
