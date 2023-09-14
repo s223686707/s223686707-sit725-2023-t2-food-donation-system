@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const passport = require("passport");
+const flash = require("connect-flash");
 const session = require("express-session");
 const expressLayouts = require("express-ejs-layouts");
 const methodOverride = require("method-override");
@@ -25,6 +26,15 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+app.use(methodOverride("_method"));
+app.use((req, res, next) => {
+	res.locals.currentUser = req.user;
+	res.locals.error = req.flash("error");
+	res.locals.success = req.flash("success");
+	res.locals.warning = req.flash("warning");
+	next();
+});
 
 
 
