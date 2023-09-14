@@ -6,6 +6,7 @@ const expressLayouts = require("express-ejs-layouts");
 const methodOverride = require("method-override");
 const homeRoutes = require("./routes/home.js");
 const authRoutes = require("./routes/auth.js");
+const adminRoutes = require("./routes/admin.js");
 require("dotenv").config();
 require("./config/dbConnection.js")();
 require("./config/passport.js")(passport);
@@ -31,6 +32,7 @@ app.use(passport.session());
 // Routes
 app.use(homeRoutes);
 app.use(authRoutes);
+app.use(adminRoutes);
 app.use((req,res) => {
 	res.status(404).render("404page", { title: "Page not found" });
 });
