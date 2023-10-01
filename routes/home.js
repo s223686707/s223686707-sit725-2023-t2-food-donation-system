@@ -1,21 +1,15 @@
+// routes/home.js
 const express = require("express");
 const router = express.Router();
+const homeController = require("../controller/homeController");
 
-router.get("/", (req,res) => {
-	res.render("home/welcome");
-});
+// Define routes using controller functions
+router.get("/", homeController.getWelcomePage);
 
-router.get("/home/about-us", (req,res) => {
-	res.render("home/aboutUs", { title: "About Us | Food Aid" });
-});
+router.get("/home/about-us", homeController.getAboutUsPage);
 
-router.get("/home/mission", (req,res) => {
-	res.render("home/mission", { title: "Our mission | Food Aid" });
-});
+router.get("/home/mission", homeController.getMissionPage);
 
-router.get("/home/contact-us", (req,res) => {
-	res.render("home/contactUs", { title: "Contact us | Food Aid" });
-});
-
+router.get("/home/contact-us", homeController.getContactUsPage);
 
 module.exports = router;

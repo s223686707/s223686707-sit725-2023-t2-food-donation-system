@@ -331,13 +331,19 @@ html {
     padding: 0 15px;
 }
 .details .info .logo {
-    padding: 34px;
-    width:45px;
+    padding: 42px;
+    width: 80px;
+    height: 80px;
     margin: 0 auto;
     background-color: rgb(1, 161, 1);
-    border-radius: 500px;
+    border-radius: 50%;
     color: white;
     font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Add object-fit to stretch the logo */
+    object-fit: cover;
 }
 .details .info #head {
     padding: 20px 0 10px;
@@ -365,7 +371,9 @@ html {
     }
     .details .info .logo {
         padding: 34px;
-        width:45px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
     }
 }
 
