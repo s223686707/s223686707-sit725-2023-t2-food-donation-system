@@ -1,64 +1,106 @@
-<main>
-	<%- include('../partials/agentSidebar') %>
-	
-	<div id="main-wrapper">
-		
-		<div class="bg-white shadow-sm p-3">
-			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
-			<h5 class="m-0 color-theme d-inline-block">Collection</h5>
-		</div>
-		
-		<div class="border m-4 my-3 p-4 bg-white rounded-2 shadow-sm">
-			<div class="mb-2">
-				<span>Donor Name:</span>
-				<span><%= collection.donor.firstName + " " + collection.donor.lastName %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Food type:</span>
-				<span><%= collection.foodType %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Quantity:</span>
-				<span><%= collection.quantity %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Time of cooking:</span>
-				<span><%= collection.cookingTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Address to collect:</span>
-				<span><%= collection.address %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Phone:</span>
-				<span><%= collection.phone %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Status:</span>
-				<span class="fw-bold text-<%= collection.status %>"><%= collection.status %></span>
-			</div>
-			
-			<% if(collection.status == "assigned" && collection.adminToAgentMsg != "") { %>
-				<div class="mb-2">
-					<span>Message from Admin:</span>
-					<div class="ms-3"><%= collection.adminToAgentMsg %></div>
-				</div>
-			<% } %>
-			
-			<% if(collection.status == "collected") { %>
-				<div class="mb-2">
-					<span>Collection time:</span>
-					<span><%= collection.collectionTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></span>
-				</div>
-			<% } %>
-			
-		</div>
-		
-	</div>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        /* Add a stylish font */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url("your-background-image.jpg"); /* Add your background image URL here */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* Page Header Styling with gradient background */
+        .page-header {
+            background: linear-gradient(135deg, #007BFF, #142ce1);
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-header h5 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Collection Details Styling */
+        .collection-details {
+            border: 1px solid #ccc;
+            margin: 3% auto;
+            padding: 4%;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.9); /* Add a semi-transparent white background */
+            max-width: 400px;
+        }
+
+        .collection-details span {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .collection-details .fw-bold {
+            color: #007BFF; /* Blue color for status */
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .page-header h5 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .collection-details {
+                width: 90%;
+                margin: 5% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <%- include('../partials/agentSidebar') %>
+
+        <div id="main-wrapper">
+            <div class="page-header">
+                <span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+                <h5 class="m-0">Collection</h5>
+            </div>
+
+            <div class="collection-details">
+                <span>Donor Name: <%= collection.donor.firstName + " " + collection.donor.lastName %></span>
+                <span>Food type: <%= collection.foodType %></span>
+                <span>Quantity: <%= collection.quantity %></span>
+                <span>Time of cooking: <%= collection.cookingTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></span>
+                <span>Address to collect: <%= collection.address %></span>
+                <span>Phone: <%= collection.phone %></span>
+                <span>Status: <span class="fw-bold text-<%= collection.status %>"><%= collection.status %></span></span>
+
+                <% if(collection.status == "assigned" && collection.adminToAgentMsg != "") { %>
+                    <span>Message from Admin:</span>
+                    <div class="ms-3"><%= collection.adminToAgentMsg %></div>
+                <% } %>
+
+                <% if(collection.status == "collected") { %>
+                    <span>Collection time: <%= collection.collectionTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></span>
+                <% } %>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
