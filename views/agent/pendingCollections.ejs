@@ -1,41 +1,155 @@
-<main>
-	<%- include('../partials/agentSidebar') %>
-	
-	<div id="main-wrapper">
-		
-		<div class="bg-white shadow-sm p-3">
-			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
-			<h5 class="m-0 color-theme d-inline-block">Pending Collections</h5>
-		</div>
-		
-		<div class="col col-sm-10 col-12 m-auto my-4" style="max-height: 75%; overflow: auto;">
-			<table class="table table-info table-striped table-hover m-0 bg-white">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Donor name</th>
-						<th scope="col">Address to collect</th>
-						<th scope="col">Phone</th>
-						<th scope="col">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% for(let i=0; i<pendingCollections.length; i++) { %>
-						<tr>
-							<th scope="row"> <%= i+1 %> </th>
-							<td> <%= pendingCollections[i].donor.firstName + " " + pendingCollections[i].donor.lastName %> </td>
-							<td> <%= pendingCollections[i].address %> </td>
-							<td> <%= pendingCollections[i].phone %> </td>
-							<td>
-								<a href="/agent/collection/view/<%= pendingCollections[i]._id %>" class="btn">View</a>
-								<a href="/agent/collection/collect/<%= pendingCollections[i]._id %>" class="btn">Collect</a>
-							</td>
-						</tr>
-					<% } %>
-				</tbody>
-			</table>
-		</div>
-		
-		
-	</div>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        /* Add a stylish font */
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Page Header Styling with gradient background */
+        .page-header {
+            background: linear-gradient(135deg, #007BFF, #142ce1);
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-header h5 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Table Styling */
+        .table-container {
+            margin: 20px auto;
+            max-height: 75vh;
+            overflow: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent; /* Set background to transparent */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: none; /* Remove table border */
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            text-align: left;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #a5db10;
+        }
+
+        /* Action Buttons Styling */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .action-buttons a:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .page-header h5 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .table-container {
+                margin: 10px auto;
+                max-height: none;
+            }
+
+            table {
+                box-shadow: none;
+            }
+
+            th {
+                background-color: #007BFF;
+                color: #fff;
+            }
+
+            .action-buttons a {
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <%- include('../partials/agentSidebar') %>
+
+        <div id="main-wrapper">
+            <div class="page-header">
+                <span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+                <h5 class="m-0">Pending Collections</h5>
+            </div>
+
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Donor name</th>
+                            <th scope="col">Address to collect</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0; i<pendingCollections.length; i++) { %>
+                            <tr>
+                                <th scope="row"> <%= i+1 %> </th>
+                                <td> <%= pendingCollections[i].donor.firstName + " " + pendingCollections[i].donor.lastName %> </td>
+                                <td> <%= pendingCollections[i].address %> </td>
+                                <td> <%= pendingCollections[i].phone %> </td>
+                                <td class="action-buttons">
+                                    <a href="/agent/collection/view/<%= pendingCollections[i]._id %>">View</a>
+                                    <a href="/agent/collection/collect/<%= pendingCollections[i]._id %>">Collect</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
