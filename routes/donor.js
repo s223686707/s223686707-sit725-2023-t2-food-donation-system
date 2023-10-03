@@ -3,7 +3,6 @@ const router = express.Router();
 const middleware = require('../middleware/index.js');
 const donorController = require('../controller/donorController');
 
-// Define routes using the donorController methods
 router.get('/donor/dashboard', middleware.ensureDonorLoggedIn, donorController.getDashboard);
 router.get('/donor/donate', middleware.ensureDonorLoggedIn, donorController.getDonateForm);
 router.post('/donor/donate', middleware.ensureDonorLoggedIn, donorController.postDonateForm);

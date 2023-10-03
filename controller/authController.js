@@ -87,7 +87,6 @@ exports.login = (req, res, next) => {
 };
 
 // Handle user logout
-// Handle user logout
 exports.logout = (req, res) => {
     req.logout((err) => {
         if (err) {
@@ -99,6 +98,3 @@ exports.logout = (req, res) => {
         res.redirect("/");
     });
 };
-
-
-// Additional routes and controller methods go here if needed
