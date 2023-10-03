@@ -138,13 +138,13 @@
                     <tbody>
                         <% for(let i=0; i<previousDonations.length; i++) { %>
                             <tr>
-                                <th scope="row"> <%= i+1 %> </th>
-                                <td> <%= previousDonations[i].foodType %> </td>
-                                <td> <%= previousDonations[i].quantity %> </td>
+                                <th scope="row" class="text-white"> <%= i+1 %> </th>
+                                <td class="text-white"> <%= previousDonations[i].foodType %> </td>
+                                <td class="text-white"> <%= previousDonations[i].quantity %> </td>
                                 <td class="fw-bold text-<%= previousDonations[i].status %>"> <%= previousDonations[i].status %> </td>
-                                <td> <%= previousDonations[i].cookingTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %> </td>
-                                <td> <%= previousDonations[i].agent.firstName + " " + previousDonations[i].agent.lastName %> </td>
-                                <td> <%= previousDonations[i].collectionTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %> </td>
+                                <td class="text-white"> <%= previousDonations[i].cookingTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %> </td>
+                                <td class="text-white"> <%= previousDonations[i].agent.firstName + " " + previousDonations[i].agent.lastName %> </td>
+                                <td class="text-white"> <%= previousDonations[i].collectionTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %> </td>
                             </tr>
                         <% } %>
                     </tbody>

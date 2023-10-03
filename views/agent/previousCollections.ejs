@@ -1,4 +1,3 @@
-PREVIOUS COLLECTION.EJS
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,10 +136,10 @@ PREVIOUS COLLECTION.EJS
                     <tbody>
                         <% for(let i=0; i<previousCollections.length; i++) { %>
                             <tr>
-                                <th scope="row"> <%= i+1 %> </th>
-                                <td> <%= previousCollections[i].donor.firstName + " " + previousCollections[i].donor.lastName %> </td>
-                                <td> <%= previousCollections[i].address %> </td>
-                                <td> <%= previousCollections[i].phone %> </td>
+                                <th class="text-white" scope="row"> <%= i+1 %> </th>
+                                <td class="text-white"> <%= previousCollections[i].donor.firstName + " " + previousCollections[i].donor.lastName %> </td>
+                                <td class="text-white"> <%= previousCollections[i].address %> </td>
+                                <td class="text-white"> <%= previousCollections[i].phone %> </td>
                                 <td class="action-buttons">
                                     <a href="/agent/collection/view/<%= previousCollections[i]._id %>">View</a>
                                 </td>
