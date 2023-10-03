@@ -91,13 +91,13 @@ Before running our application, ensure the following prerequisites are met:
    ```
 3. Go to config/dbConnection.js and input your MongoDB credentials:
    ```sh
-   MONGO_URI= your_cloud_mongouri
+   MONGO_URI = your_cloud_mongouri
    ```
 3. Start the application:
    ```sh
    npm start
    ```
-4. Visit http://localhost:5000.
+4. Visit http://localhost:3000.
 
 5. Sign up and log in to begin using the application.
 
