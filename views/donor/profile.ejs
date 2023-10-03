@@ -1,59 +1,150 @@
-<main>
-	<%- include('../partials/donorSidebar') %>
-	
-	<div id="main-wrapper">
-		
-		<div class="bg-white shadow-sm p-3">
-			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
-			<h5 class="m-0 color-theme d-inline-block">Profile</h5>
-		</div>
-		
-		<form action="/donor/profile?_method=PUT" method="POST" class="w-75 border ms-3 my-3 p-4 bg-white rounded-2 shadow" style="min-width: 400px;">
-			
-			<div class="row">
-				<div class="col-sm-6 mb-4">
-					<label for="first-name" class="form-label">First Name</label>
-					<input type="text" name="donor[firstName]" class="form-control" id="first-name" placeholder="Enter first name.." value="<%= currentUser.firstName %>" required>
-				</div>
-				
-				<div class="col-sm-6 mb-4">
-					<label for="last-name" class="form-label">Last Name</label>
-					<input type="text" name="donor[lastName]" class="form-control" id="last-name" placeholder="Enter last name.." value="<%= currentUser.lastName %>" required>
-				</div>
-			</div>
-			
-			
-			<div class="mb-4">
-				<label for="email" class="form-label">Email</label>
-				<input type="email" id="email" class="form-control" value="<%= currentUser.email %>" disabled>
-			</div>
-			
-			<div class="mb-4">
-				<span class="d-inline-block me-2">Gender:</span>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="donor[gender]" id="male" value="male" <% if(currentUser.gender=='male'){%> checked <%}%> >
-					<label class="form-check-label" for="male">Male</label>
-				</div>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="donor[gender]" id="female" value="female" <% if(currentUser.gender=='female'){%> checked <%}%> >
-					<label class="form-check-label" for="female">Female</label>
-				</div>
-			</div>
-			
-			<div class="mb-4">
-				<label for="address" class="form-label">Address</label>
-				<input type="text" name="donor[address]" class="form-control" id="address" placeholder="Enter address.." value="<%= currentUser.address %>">
-			</div>
-			
-			<div class="mb-4">
-				<label for="phone" class="form-label">Phone</label>
-				<input type="number" name="donor[phone]" class="form-control" id="phone" placeholder="Enter phone.." value="<%= currentUser.phone %>">
-			</div>
-			
-			<button type="submit" class="btn w-75 d-block m-auto mt-4">Update</button>
-		</form>
-		
-		
-		
-	</div>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        /* Add a stylish font */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url("your-background-image.jpg"); /* Add your background image URL here */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* Page Header Styling with gradient background */
+        .page-header {
+            background: linear-gradient(135deg, #007BFF, #142ce1);
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-header h5 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Form Styling */
+        .profile-form {
+            width: 75%;
+            border: 1px solid #ccc;
+            margin: 3% auto;
+            padding: 4%;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background */
+        }
+
+        .profile-form .row {
+            margin-bottom: 20px;
+        }
+
+        .profile-form label {
+            font-weight: bold;
+        }
+
+        .profile-form input[type="text"],
+        .profile-form input[type="email"],
+        .profile-form input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .profile-form .form-check {
+            margin-top: 5px;
+        }
+
+        .profile-form .btn {
+            width: 75%;
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .page-header h5 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .profile-form {
+                width: 90%;
+                margin: 5% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <%- include('../partials/donorSidebar') %>
+
+        <div id="main-wrapper">
+            <div class="page-header">
+                <span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+                <h5 class="m-0">Profile</h5>
+            </div>
+
+            <form action="/donor/profile?_method=PUT" method="POST" class="profile-form">
+                <div class="row">
+                    <div class="col-sm-6 mb-4">
+                        <label for="first-name" class="form-label">First Name</label>
+                        <input type="text" name="donor[firstName]" class="form-control" id="first-name" placeholder="Enter first name.." value="<%= currentUser.firstName %>" required>
+                    </div>
+                    <div class="col-sm-6 mb-4">
+                        <label for="last-name" class="form-label">Last Name</label>
+                        <input type="text" name="donor[lastName]" class="form-control" id="last-name" placeholder="Enter last name.." value="<%= currentUser.lastName %>" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control" value="<%= currentUser.email %>" disabled>
+                </div>
+                <div class="mb-4">
+                    <span class="d-inline-block me-2">Gender:</span>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="donor[gender]" id="male" value="male" <% if(currentUser.gender=='male'){%> checked <%}%> >
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="donor[gender]" id="female" value="female" <% if(currentUser.gender=='female'){%> checked <%}%> >
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" name="donor[address]" class="form-control" id="address" placeholder="Enter address.." value="<%= currentUser.address %>">
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="number" name="donor[phone]" class="form-control" id="phone" placeholder="Enter phone.." value="<%= currentUser.phone %>">
+                </div>
+                <button type="submit" class="btn">Update</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
