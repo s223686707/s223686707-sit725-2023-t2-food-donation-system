@@ -2,6 +2,8 @@
 
 Welcome to the Community Food Hub - a dynamic web application designed to streamline food donation and collection activities within our community.
 
+<img src="https://github.com/s223686707/s223686707-sit725-2023-t2-food-donation-system/blob/main/Demo_1.png" width="70%">
+
 ## Table of Contents
 
 - [Key Features](#key-features)
@@ -22,6 +24,8 @@ Our Community Food Hub caters to three main user roles: administrators, donors, 
 - Approval/rejection of donations and assignment of agents for collection.
 - Monitoring pending and received donations, as well as managing agent profiles.
 - Update personal admin profiles.
+
+  <img src="https://github.com/s223686707/s223686707-sit725-2023-t2-food-donation-system/blob/main/admin_1.png" width="70%">
 
 ### Donors
 
@@ -101,7 +105,7 @@ Before running our application, ensure the following prerequisites are met:
 ## Helpful Resources
 
 - **Demo:** [Demo](#) *(Replace with your demo link)*
-- **GitHub Repository:** [GitHub Repository](#) *(Replace with your repository link)*
+- **GitHub Repository:** [GitHub Repository](https://github.com/aayush301/Food-donation-management-system)
 - **Node.js Download:** [Download Node.js](https://nodejs.org/)
 - **VS Code Download:** [Download VS Code](https://code.visualstudio.com/)
 - **npm Documentation:** [npm Documentation](https://docs.npmjs.com/)
@@ -110,13 +114,19 @@ Before running our application, ensure the following prerequisites are met:
 - **Mongoose.js Documentation:** [Mongoose.js Documentation](https://mongoosejs.com/docs/index.html)
 - **MongoDB Atlas:** [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
 - **MongoDB Documentation:** [MongoDB Documentation](https://docs.mongodb.com/manual/introduction/)
-- **Nodemailer Documentation:** [Nodemailer Documentation](https://nodemailer.com/)
 - **GitHub Documentation:** [GitHub Documentation](https://docs.github.com/en/get-started/quickstart/hello-world)
+
 
 ## Get in Touch
 
-- **Email:** your.email@example.com
-- **LinkedIn:** [Your LinkedIn Profile](#) *(Replace with your LinkedIn profile link)*
+Feel free to say Hi!
+
+| Name           | LinkedIn                                  | Email                       |
+| -------------- | -----------------------------------------| ----------------------------|
+| Subhash Sainani       | [LinkedIn](#)                     | subhash@gmaail.com        |
+| Thamasha Galahena     | [LinkedIn](https://www.linkedin.com/in/thamashagalahena/)                      | galahenamthamasha@gmaail.com      |
+| Syed Ali | [LinkedIn](#)                    | syed@gmail.com  |
+
 
 
 
