@@ -136,10 +136,10 @@
                     <tbody>
                         <% for(let i=0; i<pendingCollections.length; i++) { %>
                             <tr>
-                                <th scope="row"> <%= i+1 %> </th>
-                                <td> <%= pendingCollections[i].donor.firstName + " " + pendingCollections[i].donor.lastName %> </td>
-                                <td> <%= pendingCollections[i].address %> </td>
-                                <td> <%= pendingCollections[i].phone %> </td>
+                                <th scope="row" class="text-white"> <%= i+1 %> </th>
+                                <td class="text-white"> <%= pendingCollections[i].donor.firstName + " " + pendingCollections[i].donor.lastName %> </td>
+                                <td class="text-white"> <%= pendingCollections[i].address %> </td>
+                                <td class="text-white"> <%= pendingCollections[i].phone %> </td>
                                 <td class="action-buttons">
                                     <a href="/agent/collection/view/<%= pendingCollections[i]._id %>">View</a>
                                     <a href="/agent/collection/collect/<%= pendingCollections[i]._id %>">Collect</a>

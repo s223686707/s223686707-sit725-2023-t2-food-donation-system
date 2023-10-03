@@ -151,11 +151,11 @@
                     <tbody>
                         <% for(let i=0; i<previousDonations.length; i++) { %>
                             <tr>
-                                <th scope="row"> <%= i+1 %> </th>
+                                <th scope="row" class="text-white"> <%= i+1 %> </th>
                                 <td class="text-white"> <%= previousDonations[i].donor.firstName + " " + previousDonations[i].donor.lastName %> </td>
                                 <td class="text-white"> <%= previousDonations[i].foodType %> </td>
                                 <td class="text-white"> <%= previousDonations[i].quantity %> </td>
-                                <td class="fw-bold 
+                                <td class="text-white 
                                     <% if(previousDonations[i].status === 'Pending') { %>
                                         status-pending
                                     <% } else if(previousDonations[i].status === 'Accepted') { %>
