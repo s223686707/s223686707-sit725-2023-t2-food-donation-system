@@ -1,9 +1,7 @@
-// routes/home.js
 const express = require("express");
 const router = express.Router();
 const homeController = require("../controller/homeController");
 
-// Define routes using controller functions
 router.get("/", homeController.getWelcomePage);
 
 router.get("/home/about-us", homeController.getAboutUsPage);

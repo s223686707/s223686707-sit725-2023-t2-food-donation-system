@@ -1,15 +1,13 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const app = require('../app'); // Make sure this path is correct
+const app = require('../app');
 const User = require('../models/user');
-const Donation = require('../models/donation');
 const bcrypt = require('bcryptjs');
 
 chai.use(chaiHttp);
 
 const expect = chai.expect;
 
-// Helper function to create a test donor user
 async function createTestDonor() {
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync('testpassword', salt);
@@ -25,14 +23,13 @@ async function createTestDonor() {
 }
 
 describe('Donor Routes and Controllers', () => {
-  let donor; // Store the test donor user
+  let donor;
 
   before(async () => {
     donor = await createTestDonor();
   });
 
   after(async () => {
-    // Clean up test data if needed
     await User.deleteMany({ email: 'testdonor@example.com' });
   });
 
@@ -40,10 +37,9 @@ describe('Donor Routes and Controllers', () => {
     it('should render the donor dashboard page', async () => {
       const res = await chai.request(app)
         .get('/donor/dashboard')
-        .set('Cookie', [`connect.sid=${donor.sessionID}`]); // Simulate donor login
+        .set('Cookie', [`connect.sid=${donor.sessionID}`]);
 
       expect(res).to.have.status(200);
-      //expect(res.text).to.include('Dashboard');
     });
   });
 
@@ -51,10 +47,9 @@ describe('Donor Routes and Controllers', () => {
     it('should render the donation form page', async () => {
       const res = await chai.request(app)
         .get('/donor/donate')
-        .set('Cookie', [`connect.sid=${donor.sessionID}`]); // Simulate donor login
+        .set('Cookie', [`connect.sid=${donor.sessionID}`]);
 
       expect(res).to.have.status(200);
-      // Add more assertions as needed
     });
   });
 
@@ -62,7 +57,7 @@ describe('Donor Routes and Controllers', () => {
     it('should submit a donation request', async () => {
       const res = await chai.request(app)
         .post('/donor/donate')
-        .set('Cookie', [`connect.sid=${donor.sessionID}`]) // Simulate donor login
+        .set('Cookie', [`connect.sid=${donor.sessionID}`])
         .send({
           donation: {
             foodType: 'Non-perishable',
@@ -73,8 +68,7 @@ describe('Donor Routes and Controllers', () => {
           },
         });
 
-      expect(res).to.have.status(200); // Expect a redirect after submitting the form
-      // Add more assertions as needed
+      expect(res).to.have.status(200);
     });
   });
 
@@ -82,13 +76,9 @@ describe('Donor Routes and Controllers', () => {
     it('should render the pending donations page', async () => {
       const res = await chai.request(app)
         .get('/donor/donations/pending')
-        .set('Cookie', [`connect.sid=${donor.sessionID}`]); // Simulate donor login
+        .set('Cookie', [`connect.sid=${donor.sessionID}`]);
 
       expect(res).to.have.status(200);
-      // Add more assertions as needed
     });
   });
-
-  // Add more test cases for other donor routes/controllers
-
 });

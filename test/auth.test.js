@@ -3,8 +3,6 @@ const chaiHttp = require('chai-http');
 const app = require('../app');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const flash = require('connect-flash');
 
 chai.use(chaiHttp);
 

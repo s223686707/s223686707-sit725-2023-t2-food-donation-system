@@ -14,8 +14,7 @@ require("dotenv").config();
 require("./config/dbConnection.js")();
 require("./config/passport.js")(passport);
 
-
-
+// Setting up view engine and middleware
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.use("/assets", express.static(__dirname + "/assets"));
@@ -38,22 +37,19 @@ app.use((req, res, next) => {
 	next();
 });
 
-
-
-
 // Routes
 app.use(homeRoutes);
 app.use(authRoutes);
 app.use(adminRoutes);
 app.use(donorRoutes);
 app.use(agentRoutes);
-app.use((req,res) => {
+
+// 404 Page
+app.use((req, res) => {
 	res.status(404).render("404page", { title: "Page not found" });
 });
 
-
 const port = process.env.PORT || 3000;
-app.listen(port, console.log(`Server is running on cloud at port:${port}`));
-
+app.listen(port, console.log(`Server is running on port: ${port}`));
 
 module.exports = app;

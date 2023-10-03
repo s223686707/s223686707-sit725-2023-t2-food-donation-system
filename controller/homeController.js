@@ -1,4 +1,3 @@
-// controllers/homeController.js
 
 // Display the welcome page
 exports.getWelcomePage = (req, res) => {
