@@ -1,88 +1,181 @@
-<main>
-	<%- include('../partials/adminSidebar') %>
-	
-	<div id="main-wrapper">
-		
-		<div class="bg-white shadow-sm p-3">
-			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
-			<h5 class="m-0 color-theme d-inline-block">Donation</h5>
-		</div>
-		
-		<div class="border m-4 my-3 p-4 bg-white rounded-2 shadow-sm">
-			<div class="mb-2">
-				<span>Donor Name:</span>
-				<span><%= donation.donor.firstName + " " + donation.donor.lastName %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Food type:</span>
-				<span><%= donation.foodType %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Quantity:</span>
-				<span><%= donation.quantity %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Time of cooking:</span>
-				<span><%= donation.cookingTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Address to collect:</span>
-				<span><%= donation.address %></span>
-			</div>
-			
-			<div class="mb-2">
-				<span>Phone:</span>
-				<span><%= donation.phone %></span>
-			</div>
-			
-			<% if(donation.donorToAdminMsg != "") { %>
-				<div class="mb-2">
-					<span>Message from Donor:</span>
-					<div class="ms-3"><%= donation.donorToAdminMsg %></div>
-				</div>
-			<% } %>
-				
-			<div class="mb-2">
-				<span>Status:</span>
-				<span class="fw-bold text-<%= donation.status %>"><%= donation.status %></span>
-			</div>
-			
-			<% if(donation.status == "assigned") { %>
-				<div class="mb-2">
-					<span>Agent assigned:</span>
-					<span><%= donation.agent.firstName + " "  + donation.agent.lastName %></span>
-				</div>
-			<% } %>
-			
-			<% if(donation.status == "assigned" && donation.adminToAgentMsg != "") { %>
-				<div class="mb-2">
-					<span>Your message to Agent:</span>
-					<div class="ms-3"><%= donation.adminToAgentMsg %></div>
-				</div>
-			<% } %>
-			
-			<% if(donation.status == "collected") { %>
-				<div class="mb-2">
-					<span>Collection time:</span>
-					<span><%= donation.collectionTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></span>
-				</div>
-			<% } %>
-			
-			
-			<div class="mt-4">
-				<% if(donation.status == "pending") { %>
-					<a href="/admin/donation/accept/<%= donation._id %>" class="btn">Accept</a>
-					<a href="/admin/donation/reject/<%= donation._id %>" class="btn btn-danger">Reject</a>
-				<% } else if(donation.status == "accepted") { %>
-					<a href="/admin/donation/assign/<%= donation._id %>" class="btn">Assign agent</a>
-				<% } %>
-			</div>
-			
-		</div>
-		
-	</div>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        /* Add a stylish font */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url("your-background-image.jpg"); /* Add your background image URL here */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* Page Header Styling with gradient background */
+        .page-header {
+            background: linear-gradient(135deg, #007BFF, #142ce1);
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-header h5 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Donation Details Styling */
+        .donation-details {
+            border: 1px solid #ccc;
+            margin: 3% auto;
+            padding: 4%;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background */
+        }
+
+        .donation-details .mb-2 {
+            margin-bottom: 20px;
+        }
+
+        .donation-details span {
+            font-weight: bold;
+        }
+
+        /* Status Styles */
+        .status-pending {
+            color: #FFA500; /* Orange color for "Pending" status */
+        }
+
+        .status-accepted {
+            color: #008000; /* Green color for "Accepted" status */
+        }
+
+        .status-rejected {
+            color: #FF0000; /* Red color for "Rejected" status */
+        }
+
+        .donation-details .btn {
+            width: 75%;
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .page-header h5 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .donation-details {
+                width: 90%;
+                margin: 5% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <%- include('../partials/adminSidebar') %>
+
+        <div id="main-wrapper">
+            <div class="page-header">
+                <span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+                <h5 class="m-0">Donation</h5>
+            </div>
+
+            <div class="donation-details">
+                <div class="mb-2">
+                    <span>Donor Name:</span>
+                    <span><%= donation.donor.firstName + " " + donation.donor.lastName %></span>
+                </div>
+
+                <div class="mb-2">
+                    <span>Food type:</span>
+                    <span><%= donation.foodType %></span>
+                </div>
+
+                <div class="mb-2">
+                    <span>Quantity:</span>
+                    <span><%= donation.quantity %></span>
+                </div>
+
+                <div class="mb-2">
+                    <span>Time of cooking:</span>
+                    <span><%= donation.cookingTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></span>
+                </div>
+
+                <div class="mb-2">
+                    <span>Address to collect:</span>
+                    <span><%= donation.address %></span>
+                </div>
+
+                <div class="mb-2">
+                    <span>Phone:</span>
+                    <span><%= donation.phone %></span>
+                </div>
+
+                <% if(donation.donorToAdminMsg != "") { %>
+                    <div class="mb-2">
+                        <span>Message from Donor:</span>
+                        <div class="ms-3"><%= donation.donorToAdminMsg %></div>
+                    </div>
+                <% } %>
+
+                <div class="mb-2">
+                    <span>Status:</span>
+                    <span class="fw-bold text-<%= donation.status %>"><%= donation.status %></span>
+                </div>
+
+                <% if(donation.status == "assigned") { %>
+                    <div class="mb-2">
+                        <span>Agent assigned:</span>
+                        <span><%= donation.agent.firstName + " "  + donation.agent.lastName %></span>
+                    </div>
+                <% } %>
+
+                <% if(donation.status == "assigned" && donation.adminToAgentMsg != "") { %>
+                    <div class="mb-2">
+                        <span>Your message to Agent:</span>
+                        <div class="ms-3"><%= donation.adminToAgentMsg %></div>
+                    </div>
+                <% } %>
+
+                <% if(donation.status == "collected") { %>
+                    <div class="mb-2">
+                        <span>Collection time:</span>
+                        <span><%= donation.collectionTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></span>
+                    </div>
+                <% } %>
+
+                <div class="mt-4">
+                    <% if(donation.status == "pending") { %>
+                        <a href="/admin/donation/accept/<%= donation._id %>" class="btn">Accept</a>
+                        <a href="/admin/donation/reject/<%= donation._id %>" class="btn btn-danger">Reject</a>
+                    <% } else if(donation.status == "accepted") { %>
+                        <a href="/admin/donation/assign/<%= donation._id %>" class="btn">Assign agent</a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

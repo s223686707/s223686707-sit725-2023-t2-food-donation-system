@@ -1,39 +1,182 @@
-<main>
-	<%- include('../partials/adminSidebar') %>
-	
-	<div id="main-wrapper">
-		
-		<div class="bg-white shadow-sm p-3">
-			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
-			<h5 class="m-0 color-theme d-inline-block">Pending Donations</h5>
-		</div>
-		
-		<div class="col col-sm-10 col-12 m-auto my-4" style="max-height: 75%; overflow: auto;">
-			<table class="table table-info table-striped table-hover m-0 bg-white">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Donor name</th>
-						<th scope="col">Food type</th>
-						<th scope="col">Quantity</th>
-						<th scope="col">Status</th>
-						<th scope="col">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% for(let i=0; i<pendingDonations.length; i++) { %>
-						<tr>
-							<th scope="row"> <%= i+1 %> </th>
-							<td> <%= pendingDonations[i].donor.firstName + " " + pendingDonations[i].donor.lastName %> </td>
-							<td> <%= pendingDonations[i].foodType %> </td>
-							<td> <%= pendingDonations[i].quantity %> </td>
-							<td class="fw-bold text-<%= pendingDonations[i].status %>"> <%= pendingDonations[i].status %> </td>
-							<td><a href="/admin/donation/view/<%= pendingDonations[i]._id %>" class="btn">View</a></td>
-						</tr>
-					<% } %>
-				</tbody>
-			</table>
-		</div>
-		
-	</div>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        /* Add a stylish font */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Page Header Styling with gradient background */
+        .page-header {
+            background: linear-gradient(135deg, #007BFF, #142ce1);
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-header h5 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Table Styling */
+        .table-container {
+            margin: 20px auto;
+            max-height: 75vh;
+            overflow: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent; /* Set background to transparent */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: none; /* Remove table border */
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            text-align: left;
+            color: #fff; /* Change text color to white for visibility */
+        }
+
+        tr:hover {
+            background-color: #a5db10;
+        }
+
+        /* Action Buttons Styling */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .action-buttons a:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Status Styles */
+        .status-pending {
+            color: #FFA500; /* Orange color for "Pending" status */
+        }
+
+        .status-accepted {
+            color: #008000; /* Green color for "Accepted" status */
+        }
+
+        .status-rejected {
+            color: #FF0000; /* Red color for "Rejected" status */
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .page-header h5 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .table-container {
+                margin: 10px auto;
+                max-height: none;
+            }
+
+            table {
+                box-shadow: none;
+            }
+
+            th {
+                background-color: #007BFF;
+                color: #fff;
+            }
+
+            .action-buttons a {
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <%- include('../partials/adminSidebar') %>
+        <div id="main-wrapper">
+            <div class="page-header">
+                <span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+                <h5 class="m-0">Pending Donations</h5>
+            </div>
+
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Donor name</th>
+                            <th scope="col">Food type</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0; i<pendingDonations.length; i++) { %>
+                            <tr>
+                                <th scope="row"> <%= i+1 %> </th>
+                                <td class="text-white">
+                                    <% if (pendingDonations[i].donor) { %>
+                                        <%= pendingDonations[i].donor.firstName + " " + pendingDonations[i].donor.lastName %>
+                                    <% } else { %>
+                                        N/A <!-- or any default value you prefer -->
+                                    <% } %>
+                                </td>
+                                <td class="text-white"> <%= pendingDonations[i].foodType %> </td>
+                                <td class="text-white"> <%= pendingDonations[i].quantity %> </td>
+                                <td class="text-white 
+                                    <% if(pendingDonations[i].status === 'Pending') { %>
+                                        status-pending
+                                    <% } else if(pendingDonations[i].status === 'Accepted') { %>
+                                        status-accepted
+                                    <% } else if(pendingDonations[i].status === 'Rejected') { %>
+                                        status-rejected
+                                    <% } %>
+                                "> <%= pendingDonations[i].status %> </td>
+                                <td><a href="/admin/donation/view/<%= pendingDonations[i]._id %>" class="btn">View</a></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
