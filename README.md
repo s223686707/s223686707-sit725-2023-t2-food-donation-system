@@ -11,6 +11,7 @@ Welcome to the Community Food Hub - a dynamic web application designed to stream
 - [Dependencies](#dependencies)
 - [System Requirements](#system-requirements)
 - [Installation Guide](#installation-guide)
+- [Site Map and Data Flows](#installation-guide)
 - [Helpful Resources](#helpful-resources)
 - [Get in Touch](#get-in-touch)
 
@@ -88,9 +89,9 @@ Before running our application, ensure the following prerequisites are met:
    ```sh
    npm install
    ```
-3. Create a file named ".env" and input your MongoDB credentials:
+3. Go to config/dbConnection.js and input your MongoDB credentials:
    ```sh
-   MONGO_URI=yourmongouri
+   MONGO_URI= your_cloud_mongouri
    ```
 3. Start the application:
    ```sh
@@ -100,9 +101,25 @@ Before running our application, ensure the following prerequisites are met:
 
 5. Sign up and log in to begin using the application.
 
+## Site Map, Data Flows and Architecture
+
+1. Site Map
+
+<img src="https://github.com/s223686707/s223686707-sit725-2023-t2-food-donation-system/blob/main/site_map.png" width="70%">
+
+2. Data Flows
+
+<img src="https://github.com/s223686707/s223686707-sit725-2023-t2-food-donation-system/blob/main/flow1.jpeg" width="70%">
+<img src="https://github.com/s223686707/s223686707-sit725-2023-t2-food-donation-system/blob/main/flow2.jpeg" width="70%">
+<img src="https://github.com/s223686707/s223686707-sit725-2023-t2-food-donation-system/blob/main/flow3.jpeg" width="70%">
+
+3. Architecture
+
+<img src="https://github.com/s223686707/s223686707-sit725-2023-t2-food-donation-system/blob/main/flow5.jpeg" width="50%">
+
 ## Helpful Resources
 
-- **Demo:** [Demo](#) *(Replace with your demo link)*
+- **Demo:** [Demo](#) *(Replace with our demo - Amazon EC2 IP)*
 - **GitHub Repository:** [GitHub Repository](https://github.com/aayush301/Food-donation-management-system)
 - **Node.js Download:** [Download Node.js](https://nodejs.org/)
 - **VS Code Download:** [Download VS Code](https://code.visualstudio.com/)
