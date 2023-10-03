@@ -25,8 +25,6 @@ Our Community Food Hub caters to three main user roles: administrators, donors, 
 - Monitoring pending and received donations, as well as managing agent profiles.
 - Update personal admin profiles.
 
-  <img src="https://github.com/s223686707/s223686707-sit725-2023-t2-food-donation-system/blob/main/admin_1.png" width="70%">
-
 ### Donors
 
 - Initiate donation requests with basic information.
