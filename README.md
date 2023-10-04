@@ -11,7 +11,7 @@ Welcome to the Community Food Hub - a dynamic web application designed to stream
 - [Dependencies](#dependencies)
 - [System Requirements](#system-requirements)
 - [Installation Guide](#installation-guide)
-- [Site Map and Data Flows](#installation-guide)
+- [Site Map, Data Flows and Architecture](#installation-guide)
 - [Helpful Resources](#helpful-resources)
 - [Get in Touch](#get-in-touch)
 
@@ -73,7 +73,6 @@ We rely on the following npm packages:
 - passport-local
 - connect-flash
 - method-override
-- dotenv
 
 ## System Requirements
 
@@ -95,7 +94,7 @@ Before running our application, ensure the following prerequisites are met:
    ```
 3. Start the application:
    ```sh
-   npm start
+   node app.js
    ```
 4. Visit http://localhost:3000.
 
